@@ -16,14 +16,14 @@ window.onload = () =>{
                 {
                     name : 'Kejar Mimpi',
                     artist : 'Maudy Ayunda',
-                    image :'populer/kejar-mimpi.jpg',
+                    image :'populer/Kejar-Mimpi.png',
                     songUrl :'kejar-mimpi.mp3',
                     duration :'04 : 11' 
                 },
                 {
                     name : 'Menepi',
                     artist : 'Woro Widowati',
-                    image :'populer/menepi.jpg',
+                    image :'populer/menepi.png',
                     songUrl :'populer/menepi.mp3',
                     duration :'04 : 49' 
                 },
