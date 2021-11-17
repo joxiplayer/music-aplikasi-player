@@ -30,7 +30,7 @@ window.onload = () =>{
                 {
                     name : 'Cinta Luar Biasa',
                     artist : 'Andmesh Kamaleng',
-                    image :'populer/Cinta-luar-biasa.jpg',
+                    image :'populer/Cinta-Luar-Biasa.jpg',
                     songUrl :'populer/menepi.mp3',
                     duration :'04 : 31' 
                 },
