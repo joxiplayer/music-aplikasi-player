@@ -31,7 +31,7 @@ window.onload = () =>{
                     name : 'Cinta Luar Biasa',
                     artist : 'Andmesh Kamaleng',
                     image :'populer/Cinta-Luar-Biasa.jpg',
-                    songUrl :'populer/menepi.mp3',
+                    songUrl :'populer/cinta-luar-biasa.mp3',
                     duration :'04 : 31' 
                 },
                 {
@@ -42,17 +42,19 @@ window.onload = () =>{
                     duration :'04 : 49' 
                 },
                 {
-                    name : 'Shape of you',
-                    artist : 'Ed sharen',
-                    image :'ShapeOfYou.jpg',
-                    songUrl :'Shape-of-You.mp3',
-                    duration :'04:23' 
+                    name : 'Salah Apa Aku',
+                    artist : 'ILIR 7',
+                    image :'populer/salah-apa-aku.jpg',
+                    songUrl :'populer/salah-apa-aku.mp3',
+                    duration :'04 : 17' 
                 },
+
+
                 {
-                    name : 'Darkside',
-                    artist : 'Alan Walker',
-                    image :'Darkside.jpg',
-                    songUrl:'Darkside.mp3',
+                    name : 'Perlahan',
+                    artist : 'GuyonWaton',
+                    image :'all/perlahan.jpg',
+                    songUrl:'all/perlahan.mp3',
                     duration :'03:59' 
                 },
                 {
@@ -101,6 +103,17 @@ window.onload = () =>{
             
             ]
 
+            const randomSong = [
+                        
+                {
+                    name : 'Melukis Senja',
+                    artist : 'Budi Doremi',
+                    image :'all/melukis-senja.jpg',
+                    songUrl :'Akame.mp3',
+                    duration :'02:44' 
+                },
+            ]
+
             const animeSong = [
                         
                 {
@@ -134,17 +147,28 @@ window.onload = () =>{
                 
             ]
 
-        
+            const sadSong = [
+                        
+                {
+                    name : 'Melukis Senja',
+                    artist : 'Budi Doremi',
+                    image :'all/melukis-senja.jpg',
+                    songUrl :'Akame.mp3',
+                    duration :'02:44' 
+                },
+            ]
 
             let getRecommendedSong =[{}];
-            const randomValue = Math.floor(Math.random() * animeSong.length);
-            getRecommendedSong[0] = animeSong[randomValue];
+            const randomValue = Math.floor(Math.random() * randomSong.length);
+            getRecommendedSong[0] = randomSong[randomValue];
     
             
 
             return {
             songs,
             animeSong,
+            randomSong,
+            sadSong,
             getRecommendedSong
             }
 
