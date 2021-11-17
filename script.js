@@ -17,7 +17,7 @@ window.onload = () =>{
                     name : 'Kejar Mimpi',
                     artist : 'Maudy Ayunda',
                     image :'populer/Kejar-Mimpi.png',
-                    songUrl :'kejar-mimpi.mp3',
+                    songUrl :'all/kejar-mimpi.mp3',
                     duration :'04 : 11' 
                 },
                 {
@@ -55,52 +55,8 @@ window.onload = () =>{
                     artist : 'GuyonWaton',
                     image :'all/perlahan.jpg',
                     songUrl:'all/perlahan.mp3',
-                    duration :'03:59' 
+                    duration :'03 : 59' 
                 },
-                {
-                    name : 'End Of Time',
-                    artist : 'Alan Walker',
-                    image :'End-Of-Time.jpg',
-                    songUrl :'End-Of-Time.mp3',
-                    duration :'03:05' 
-                },
-
-                {
-                    name : 'Gunaah',
-                    artist : 'Rana Mazumder',
-                    image :'Gunaah.jpg',
-                    songUrl :'Gunaah.mp3',
-                    duration :'05:38' 
-                },
-                {
-                    name : 'Yaara',
-                    artist : 'Arnab Dutta',
-                    image :'Yaara.jpg',
-                    songUrl :'Yaara.mp3',
-                    duration :'05:47' 
-                },
-                {
-                    name : 'Tu Hi Hai',
-                    artist : 'Rahul Mishra',
-                    image :'Tu-Hi-Hain.jpg',
-                    songUrl :'Tu-Hi-Hai.mp3',
-                    duration :'05:31' 
-                },
-                {
-                    name : 'Tip Tip',
-                    artist : 'Sajal Aly , Naveed Nashad',
-                    image :'Tip-Tip.jpg',
-                    songUrl :'Tip-Tip.mp3',
-                    duration :'01:37' 
-                },
-                {
-                    name : 'Ab-Na-Phir-Se',
-                    artist : 'Yasser Desai',
-                    image :'Ab-Na-Phir-Se.jpg',
-                    songUrl :'Ab-Na-Phir-Se.mp3',
-                    duration :'04:22' 
-                },
-            
             ]
 
             const randomSong = [
@@ -109,8 +65,8 @@ window.onload = () =>{
                     name : 'Melukis Senja',
                     artist : 'Budi Doremi',
                     image :'all/melukis-senja.jpg',
-                    songUrl :'Akame.mp3',
-                    duration :'02:44' 
+                    songUrl :'all/melukis-senja.mp3',
+                    duration :'05 : 22' 
                 },
             ]
 
@@ -147,17 +103,6 @@ window.onload = () =>{
                 
             ]
 
-            const sadSong = [
-                        
-                {
-                    name : 'Melukis Senja',
-                    artist : 'Budi Doremi',
-                    image :'all/melukis-senja.jpg',
-                    songUrl :'Akame.mp3',
-                    duration :'02:44' 
-                },
-            ]
-
             let getRecommendedSong =[{}];
             const randomValue = Math.floor(Math.random() * randomSong.length);
             getRecommendedSong[0] = randomSong[randomValue];
@@ -168,7 +113,6 @@ window.onload = () =>{
             songs,
             animeSong,
             randomSong,
-            sadSong,
             getRecommendedSong
             }
 
