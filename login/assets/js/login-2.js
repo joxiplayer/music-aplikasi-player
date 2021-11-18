@@ -11,26 +11,6 @@ var firebaseConfig = {
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-    firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-          document.getElementById("img").innerHTML = `
-                <p><br /> <img src="${user.photoURL}">
-            `;
-          document.getElementById("username").innerHTML = `
-                <p><br /> Your Name : ${user.displayName}
-                   <br /> Your Email : ${user.email}
-            `;
-          document.getElementById("username-link").innerHTML = `${user.uid}
-            `;
-            const linkUsername = document.getElementById("username-link");
-            const link = document.getElementById("link");
-            link.href = link.textContent ;
-
-        }   else {
-          window.location = "login/index.html";
-        }
-      });
-      
     var form = document.querySelector('#loginForm');
     var r_form = document.querySelector('#registerForm');
     var reset_form = document.querySelector('#resetForm');
