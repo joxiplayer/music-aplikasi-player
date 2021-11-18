@@ -30,9 +30,6 @@ var myDate = new Date();
 
       firebase.auth().onAuthStateChanged(function (user) {
         if (user) {
-          document.getElementById("img").innerHTML = `
-                <p><br /> <img src="${user.photoURL}">
-            `;
           document.getElementById("username").innerHTML = `
                 <p>${user.displayName}
             `;
