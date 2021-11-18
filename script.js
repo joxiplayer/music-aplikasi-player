@@ -635,7 +635,7 @@ var myDate = new Date();
             link.href = link.textContent ;
 
         }   else {
-          window.location = "login.html";
+          window.location = "login/index.html";
         }
       });
 
@@ -644,7 +644,7 @@ var myDate = new Date();
           .auth()
           .signOut()
           .then(function () {
-            window.location = "login.html";
+            window.location = "login/index.html";
           })
           .catch(function (error) {
             console.log(error);
