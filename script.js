@@ -615,7 +615,7 @@ var myDate = new Date();
   storageBucket: "joxiplayer.appspot.com",
   messagingSenderId: "729525488928",
   appId: "1:729525488928:web:2600f2af0d292b731b1b45",
-  measurementId: "G-6LE8X72504",
+  measurementId: "G-6LE8X72504"
       };
       firebase.initializeApp(firebaseConfig);
 
