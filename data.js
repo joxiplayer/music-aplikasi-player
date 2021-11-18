@@ -35,7 +35,11 @@ var myDate = new Date();
             `;
           document.getElementById("username").innerHTML = `
                 <p>${user.displayName}
-                   <br /> Your Email : ${user.email}
+                   <br />${user.email}
+            `;
+
+            document.getElementById("name").innerHTML = `
+                <p>${user.displayName}
             `;
           document.getElementById("username-link").innerHTML = `${user.uid}
             `;
