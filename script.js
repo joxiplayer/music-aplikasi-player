@@ -588,7 +588,6 @@ window.onload = () =>{
 }
 
 
-//---Waktu--//
 
 var myDate = new Date();
             var hrs = myDate.getHours();
