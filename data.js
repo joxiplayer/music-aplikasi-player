@@ -34,7 +34,7 @@ var myDate = new Date();
                 <p><br /> <img src="${user.photoURL}">
             `;
           document.getElementById("username").innerHTML = `
-                <p><br /> Your Name : ${user.displayName}
+                <p>${user.displayName}
                    <br /> Your Email : ${user.email}
             `;
           document.getElementById("username-link").innerHTML = `${user.uid}
