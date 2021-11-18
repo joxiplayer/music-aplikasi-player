@@ -586,3 +586,68 @@ window.onload = () =>{
  
 
 }
+
+
+//---Waktu--//
+var myDate = new Date();
+            var hrs = myDate.getHours();
+        
+            var greet;
+        
+            if (hrs < 12)
+                greet = 'Selamat Pagi';
+            else if (hrs >= 12 && hrs <= 14)
+                greet = 'Selamat Siang';
+            else if (hrs >= 13 && hrs <= 18)
+                greet = 'Selamat Sore';
+            else if (hrs >= 19 && hrs <= 24)
+                greet = 'Selamat Malam';
+        
+            document.getElementById('welcome').innerHTML =
+                '<b>' + greet + '</b> ';
+
+                // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCmZTmGnbJoUWc_Smb_wlD6Q7VsayIEf9M",
+  authDomain: "joxiplayer.firebaseapp.com",
+  databaseURL: "https://joxiplayer-default-rtdb.firebaseio.com",
+  projectId: "joxiplayer",
+  storageBucket: "joxiplayer.appspot.com",
+  messagingSenderId: "729525488928",
+  appId: "1:729525488928:web:2600f2af0d292b731b1b45",
+  measurementId: "G-6LE8X72504",
+      };
+      firebase.initializeApp(firebaseConfig);
+
+      firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+          document.getElementById("img").innerHTML = `
+                <p><br /> <img src="${user.photoURL}">
+            `;
+          document.getElementById("username").innerHTML = `
+                <p><br /> Your Name : ${user.displayName}
+                   <br /> Your Email : ${user.email}
+            `;
+          document.getElementById("username-link").innerHTML = `${user.uid}
+            `;
+            const linkUsername = document.getElementById("username-link");
+            const link = document.getElementById("link");
+            link.href = link.textContent ;
+
+        }   else {
+          window.location = "login.html";
+        }
+      });
+
+      function logout() {
+        firebase
+          .auth()
+          .signOut()
+          .then(function () {
+            window.location = "login.html";
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      }
+      showData();
