@@ -57,6 +57,13 @@ window.onload = () =>{
                     songUrl:'all/perlahan.mp3',
                     duration :'03 : 59' 
                 },
+                {
+                    name : 'Buruh Tani',
+                    artist : 'MARJINAL',
+                    image :'all/buruh-tani.jpg',
+                    songUrl:'all/buruh-tani.mp3',
+                    duration :'03 : 21' 
+                },
             ]
 
             const randomSong = [
