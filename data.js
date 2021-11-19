@@ -3,12 +3,14 @@ var myDate = new Date();
         
             var greet;
         
-            if (hrs < 12)
+            if (hrs < 10)
                 greet = 'Selamat Pagi';
-            else if (hrs >= 12 && hrs <= 14)
+            else if (hrs >= 10 && hrs <= 15)
                 greet = 'Selamat Siang';
-            else if (hrs >= 13 && hrs <= 18)
+            else if (hrs >= 15 && hrs <= 18)
                 greet = 'Selamat Sore';
+            else if (hrs >= 18 && hrs <= 19)
+                greet = 'Selamat Petang';
             else if (hrs >= 19 && hrs <= 24)
                 greet = 'Selamat Malam';
         
