@@ -25,7 +25,7 @@ var firebaseConfig = {
                 window.location = 'https://joxiplayer.github.io/music-aplikasi-player/setting/profile/index.html';
             }
         } else {
-            if(window.location.pathname === '/./index.html'){
+            if(window.location.pathname === '/https://joxiplayer.github.io/music-aplikasi-player/setting/profile/index.html'){
                 window.location = 'index.html';
             }
         }
