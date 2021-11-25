@@ -21,8 +21,8 @@ var firebaseConfig = {
     // check if user is logged in or not
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            if(window.location.pathname != '/./index.html'){
-                window.location = './index.html';
+            if(window.location.pathname != '/https://joxiplayer.github.io/music-aplikasi-player/setting/profile/index.html'){
+                window.location = 'https://joxiplayer.github.io/music-aplikasi-player/setting/profile/index.html';
             }
         } else {
             if(window.location.pathname === '/./index.html'){
@@ -40,7 +40,7 @@ var firebaseConfig = {
         
             firebase.auth().signInWithEmailAndPassword(email, password)
             .then((userCredential) => {
-                window.location = '../index.html';
+                window.location = 'https://joxiplayer.github.io/music-aplikasi-player/setting/profile/index.html';
             })
             .catch((error) => {
                 message.style.display = 'block';
@@ -61,7 +61,7 @@ var firebaseConfig = {
         
             firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((userCredential) => {
-                window.location = '../index.html';
+                window.location = 'https://joxiplayer.github.io/music-aplikasi-player/setting/profile/index.html';
             })
             .catch((error) => {
                 message.style.display = 'block';
@@ -101,7 +101,7 @@ var firebaseConfig = {
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         // console.log(user);
-        window.location = '../index.html';
+        window.location = 'https://joxiplayer.github.io/music-aplikasi-player/setting/profile/index.html';
       }
     });
     
@@ -109,7 +109,7 @@ var firebaseConfig = {
       firebase.auth()
         .signInWithPopup(provider)
         .then((result) => {
-          window.location = './index.html'
+          window.location = 'https://joxiplayer.github.io/music-aplikasi-player/setting/profile/index.html'
         }).catch((error) => {
           console.log(error);
         });
