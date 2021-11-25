@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Toast Message</title>
+
+	<meta charset="utf-8">
+	<meta name="format-detection" content="telephone=no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+
+    <script src="toast.js"></script>
+
+<style type="text/css">
+	.toast_container {
+		width: 270px;
+		height:29px;
+		left: 50%;
+		bottom: 7.5%;
+		position: fixed;
+		background: #424242;
+		color: #FFFFFF;
+		text-align: center;
+		padding-top: 9px;
+		border-radius:20px;
+		opacity: .9;
+		transform: translate(-50%, -50%);
+		visibility:hidden;
+	}
+
+	@keyframes animation_toast {
+		0% {
+			opacity:0;
+		}
+		30% {
+			opacity:1;
+		}
+		60% {
+			opacity:1;
+		}
+		100% {
+			opacity:0;
+		}
+	}
+</style>
+</head>
+<body>
+
+	<button onclick="ShowToast();">Show Toast 1</button>
+	<br>
+	<br>
+	<button onclick="ShowToastTwo();">Show Toast 2</button>
+
+	<div id="toast_container" class="toast_container">
+		<span id="toast_message"></span>
+	</div>
+<br>
+	<br>
+	<br>
+	<br>
+	<samp>
+		package com.themddevelopers.islamicknowledges;
+
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+
+import android.util.DisplayMetrics;
+import android.view.Display;
+import android.view.MenuItem;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.formats.UnifiedNativeAd;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import android.view.Menu;
+import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
+
+public class BoysNames extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
+
+    private FrameLayout adContainerView;
+    private AdView adView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_boys_names);
+
+        WebView webView = findViewById(R.id.webView);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setAllowFileAccess(true);
+        webView.loadUrl("file:///android_asset/www/BoysName.html");
+        webView.setBackgroundColor(getResources().getColor(R.color.backgroundColor));
+        webView.setWebViewClient(new WebViewClient());
+        webView.setWebChromeClient(new WebChromeClient());
+
+        //  Load Banner Start
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) { }
+        });
+        adContainerView = findViewById(R.id.ad_view_container);
+        // Step 1 - Create an AdView and set the ad unit ID on it.
+        adView = new AdView(this);
+        adView.setAdUnitId(getString(R.string.adaptive_banner_ad_unit_id));
+        adContainerView.addView(adView);
+        loadBanner();
+        //  Load Banner End
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("MyNotifications", "MyNotifications", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
+        }
+        FirebaseMessaging.getInstance().subscribeToTopic("BoysName")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = "Successful";
+                        if (!task.isSuccessful()) {
+                            msg = "Failed";
+                        }
+                        //  Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+//        FloatingActionButton fab = findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    //  Load Banner Start
+    private void loadBanner() {
+        // Create an ad request. Check your logcat output for the hashed device ID
+        // to get test ads on a physical device, e.g.,
+        // "Use AdRequest.Builder.addTestDevice("ABCDE0123") to get test ads on this
+        // device."
+        AdRequest adRequest =
+                new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                        .build();
+        AdSize adSize = getAdSize();
+        // Step 4 - Set the adaptive ad size on the ad view.
+        adView.setAdSize(adSize);
+        // Step 5 - Start loading the ad in the background.
+        adView.loadAd(adRequest);
+    }
+
+    private AdSize getAdSize() {
+        // Step 2 - Determine the screen width (less decorations) to use for the ad width.
+        Display display = getWindowManager().getDefaultDisplay();
+        DisplayMetrics outMetrics = new DisplayMetrics();
+        display.getMetrics(outMetrics);
+
+        float widthPixels = outMetrics.widthPixels;
+        float density = outMetrics.density;
+
+        int adWidth = (int) (widthPixels / density);
+
+        // Step 3 - Get adaptive ad size and return for setting on the ad view.
+        return AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(this, adWidth);
+    }
+    //  Load Banner End
+
+    public void SubscribeToShaliha(View view){
+        Intent m_Shaliha = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/channel/UC0AdTdtYbMApEPkVGTzZrdg/featured"));
+        startActivity(m_Shaliha);
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        }else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.boysnames, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        switch(id){
+            case R.id.settings :
+                Intent at = new Intent(BoysNames.this, Settings.class);
+                startActivity(at);
+                break;
+            case R.id.naat_sharif :
+                Intent ts = new Intent(BoysNames.this, YouTube.class);
+                startActivity(ts);
+                break;
+            case R.id.share_app :
+                Intent share = new Intent(
+                        android.content.Intent.ACTION_SEND);
+                share.setType("text/plain");
+                share.putExtra(android.content.Intent.EXTRA_TEXT,getString(R.string.share_message));
+                startActivity(Intent.createChooser(
+                        share,
+                        getString(R.string.share_with)));
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressLint("NewApi")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        switch(id){
+            case R.id.nav_home :
+                Intent h = new Intent(BoysNames.this, MainActivity.class);
+                startActivity(h);
+                break;
+            case R.id.nav_about :
+                final AlertDialog.Builder builder =  new AlertDialog.Builder(this);
+                builder.setCancelable(true);
+                builder.setIcon(R.drawable.ic_launcher_round);
+                builder.setTitle(getString(R.string.app_name_and_version));
+                builder.setView(R.layout.about_app);
+                //set listeners for dialog buttons
+                builder.setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //finish the activity
+                        dialog.dismiss();
+                    }
+                });
+                //create the alert dialog and show it
+                builder.create().show();
+                break;
+            case R.id.nav_privacy :
+                Intent p = new Intent(BoysNames.this, Privacy.class);
+                startActivity(p);
+                break;
+            case R.id.nav_share :
+                Intent share = new Intent(
+                        android.content.Intent.ACTION_SEND);
+                share.setType("text/plain");
+                share.putExtra(android.content.Intent.EXTRA_TEXT,getString(R.string.share_message));
+                startActivity(Intent.createChooser(
+                        share,
+                        getString(R.string.share_with)));
+                break;
+            case R.id.nav_ads :
+                Uri MaksudShaliha = Uri.parse("https://play.google.com/store/apps/details?id=com.themddevelopers.islamicknowledges.pro");
+                Intent pro = new Intent(Intent.ACTION_VIEW, MaksudShaliha);
+                startActivity(pro);
+                break;
+            case R.id.nav_rate :
+                Uri Shaliha = Uri.parse("https://play.google.com/store/apps/details?id=com.themddevelopers.islamicknowledges");
+                Intent Rate = new Intent(Intent.ACTION_VIEW, Shaliha);
+                startActivity(Rate);
+                break;
+            case R.id.nav_fb :
+                Uri MdShaliha = Uri.parse("https://www.facebook.com/themddevelopers");
+                Intent Like = new Intent(Intent.ACTION_VIEW, MdShaliha);
+                startActivity(Like);
+                break;
+            case R.id.nav_apps :
+                Uri ShalihaM = Uri.parse("https://play.google.com/store/themddevelopers");
+                Intent Apps = new Intent(Intent.ACTION_VIEW, ShalihaM);
+                startActivity(Apps);
+                break;
+        }
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+}
+	</samp>
+</body>
+</html>
