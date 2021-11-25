@@ -21,11 +21,11 @@ var firebaseConfig = {
     // check if user is logged in or not
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            if(window.location.pathname != '/../index.html'){
-                window.location = '../index.html';
+            if(window.location.pathname != '/./index.html'){
+                window.location = './index.html';
             }
         } else {
-            if(window.location.pathname === '/../index.html'){
+            if(window.location.pathname === '/./index.html'){
                 window.location = 'index.html';
             }
         }
@@ -109,7 +109,7 @@ var firebaseConfig = {
       firebase.auth()
         .signInWithPopup(provider)
         .then((result) => {
-          window.location = '../index.html'
+          window.location = './index.html'
         }).catch((error) => {
           console.log(error);
         });
