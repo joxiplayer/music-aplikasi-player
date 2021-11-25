@@ -44,7 +44,7 @@
             link.href = link.textContent ;
 
         }   else {
-          window.location = "https://joxiplayer.github.io/music-aplikasi-player/login/index.html";
+          window.location = "/login/index.html";
         }
       });
 
@@ -53,7 +53,7 @@
           .auth()
           .signOut()
           .then(function () {
-            window.location = "https://joxiplayer.github.io/music-aplikasi-player/login/index.html";
+            window.location = "/login/index.html";
           })
           .catch(function (error) {
             console.log(error);
